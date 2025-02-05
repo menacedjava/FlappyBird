@@ -8,24 +8,24 @@ import java.util.List;
 import java.util.Random;
 
 public class FlappyBird extends JPanel implements ActionListener, KeyListener {
-//
-//    private static final int WIDTH = 800;
-//    private static final int HEIGHT = 600;
-//    private static final int BIRD_WIDTH = 40;
-//    private static final int BIRD_HEIGHT = 40;
-//    private static final int PIPE_WIDTH = 80;
-//    private static final int PIPE_GAP = 200;
-//    private static final int PIPE_VELOCITY = 3;
-//
-//    private int birdX = 100, birdY = 300, birdVelocity = 0;
-//    private int score = 0;
-//
-//    private List<Rectangle> pipes;
-//    private boolean gameOver = false;
-//    private boolean gameStarted = false;
-//
-//    private Timer timer;
-//    private Random rand;
+
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 600;
+    private static final int BIRD_WIDTH = 40;
+    private static final int BIRD_HEIGHT = 40;
+    private static final int PIPE_WIDTH = 80;
+    private static final int PIPE_GAP = 200;
+    private static final int PIPE_VELOCITY = 3;
+
+    private int birdX = 100, birdY = 300, birdVelocity = 0;
+    private int score = 0;
+
+    private List<Rectangle> pipes;
+    private boolean gameOver = false;
+    private boolean gameStarted = false;
+
+    private Timer timer;
+    private Random rand;
 //
 //    public FlappyBird() {
 //        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
