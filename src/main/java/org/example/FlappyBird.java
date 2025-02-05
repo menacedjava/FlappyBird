@@ -40,90 +40,90 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         timer.start();
     }
 
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+
+        if (gameOver) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("Arial", Font.BOLD, 50));
+            g.drawString("Game Over!", WIDTH / 2 - 150, HEIGHT / 2);
+            g.setFont(new Font("Arial", Font.PLAIN, 30));
+            g.drawString("Press Space to Restart", WIDTH / 2 - 170, HEIGHT / 2 + 50);
+            return;
+        }
+
+
+        g.setColor(Color.YELLOW);
+        g.fillRect(birdX, birdY, BIRD_WIDTH, BIRD_HEIGHT);
+
+
+        birdVelocity += 1;
+        birdY += birdVelocity;
+
+
+        g.setColor(Color.GREEN);
+        for (Rectangle pipe : pipes) {
+            g.fillRect(pipe.x, pipe.y, PIPE_WIDTH, pipe.height);
+        }
+
+
+        if (!gameStarted) {
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("Arial", Font.BOLD, 50));
+            g.drawString("Flappy Bird", WIDTH / 2 - 150, HEIGHT / 2 - 100);
+            g.setFont(new Font("Arial", Font.PLAIN, 30));
+            g.drawString("Press Space to Start", WIDTH / 2 - 170, HEIGHT / 2 - 50);
+        }
+
+
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.PLAIN, 30));
+        g.drawString("Score: " + score, 10, 30);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (gameOver) return;
+
+
+        List<Rectangle> newPipes = new ArrayList<>();
+        for (Rectangle pipe : pipes) {
+            pipe.x -= PIPE_VELOCITY;
+            if (pipe.x + PIPE_WIDTH > 0) {
+                newPipes.add(pipe);
+            }
+        }
+        pipes = newPipes;
+
+
+        if (pipes.isEmpty() || pipes.get(pipes.size() - 1).x < WIDTH - 300) {
+            addPipe();
+        }
+
+
+        if (birdY > HEIGHT - BIRD_HEIGHT || birdY < 0) {
+            gameOver = true;
+        }
+
+
+        for (Rectangle pipe : pipes) {
+            if (pipe.intersects(new Rectangle(birdX, birdY, BIRD_WIDTH, BIRD_HEIGHT))) {
+                gameOver = true;
+            }
+        }
+
 //
-//        // O'yin tugagan bo'lsa
-//        if (gameOver) {
-//            g.setColor(Color.RED);
-//            g.setFont(new Font("Arial", Font.BOLD, 50));
-//            g.drawString("Game Over!", WIDTH / 2 - 150, HEIGHT / 2);
-//            g.setFont(new Font("Arial", Font.PLAIN, 30));
-//            g.drawString("Press Space to Restart", WIDTH / 2 - 170, HEIGHT / 2 + 50);
-//            return;
-//        }
-//
-//        // Quvishni chizish
-//        g.setColor(Color.YELLOW);
-//        g.fillRect(birdX, birdY, BIRD_WIDTH, BIRD_HEIGHT);
-//
-//        // Quvishning harakatlanishi
-//        birdVelocity += 1;  // Gravitatsiya ta'siri
-//        birdY += birdVelocity;
-//
-//        // To'siqlarni chizish
-//        g.setColor(Color.GREEN);
-//        for (Rectangle pipe : pipes) {
-//            g.fillRect(pipe.x, pipe.y, PIPE_WIDTH, pipe.height);
-//        }
-//
-//        // O'yin boshlanganda
-//        if (!gameStarted) {
-//            g.setColor(Color.BLACK);
-//            g.setFont(new Font("Arial", Font.BOLD, 50));
-//            g.drawString("Flappy Bird", WIDTH / 2 - 150, HEIGHT / 2 - 100);
-//            g.setFont(new Font("Arial", Font.PLAIN, 30));
-//            g.drawString("Press Space to Start", WIDTH / 2 - 170, HEIGHT / 2 - 50);
-//        }
-//
-//        // Ballarni chizish
-//        g.setColor(Color.BLACK);
-//        g.setFont(new Font("Arial", Font.PLAIN, 30));
-//        g.drawString("Score: " + score, 10, 30);
-//    }
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if (gameOver) return;
-//
-//        // To'siqlarni harakatlantirish
-//        List<Rectangle> newPipes = new ArrayList<>();
-//        for (Rectangle pipe : pipes) {
-//            pipe.x -= PIPE_VELOCITY;
-//            if (pipe.x + PIPE_WIDTH > 0) {
-//                newPipes.add(pipe);
-//            }
-//        }
-//        pipes = newPipes;
-//
-//        // Yangi to'siq qo'shish
-//        if (pipes.isEmpty() || pipes.get(pipes.size() - 1).x < WIDTH - 300) {
-//            addPipe();
-//        }
-//
-//        // O'yinchi quvishini tekshirish
-//        if (birdY > HEIGHT - BIRD_HEIGHT || birdY < 0) {
-//            gameOver = true;
-//        }
-//
-//        // To'siqlarga urilish
-//        for (Rectangle pipe : pipes) {
-//            if (pipe.intersects(new Rectangle(birdX, birdY, BIRD_WIDTH, BIRD_HEIGHT))) {
-//                gameOver = true;
-//            }
-//        }
-//
-//        // O'yinchi yuqoriga / pastga harakatlanishi
 //        if (gameStarted) {
 //            birdY += birdVelocity;
-//            birdVelocity += 1;  // Gravitatsiya ta'siri
+//            birdVelocity += 1;
 //        }
 //
 //        repaint();
 //    }
 //
-//    // Klaviatura orqali boshqaruv
+//
 //    @Override
 //    public void keyPressed(KeyEvent e) {
 //        int key = e.getKeyCode();
