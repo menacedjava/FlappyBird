@@ -114,61 +114,61 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
             }
         }
 
-//
-//        if (gameStarted) {
-//            birdY += birdVelocity;
-//            birdVelocity += 1;
-//        }
-//
-//        repaint();
-//    }
-//
-//
-//    @Override
-//    public void keyPressed(KeyEvent e) {
-//        int key = e.getKeyCode();
-//        if (key == KeyEvent.VK_SPACE) {
-//            if (gameOver) {
-//                resetGame(); // O'yin qayta boshlanishi
-//            } else {
-//                if (!gameStarted) {
-//                    gameStarted = true; // O'yin boshlanishi
-//                }
-//                birdVelocity = -10;  // Quvishni yuqoriga harakatlantirish
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void keyReleased(KeyEvent e) {}
-//
-//    @Override
-//    public void keyTyped(KeyEvent e) {}
-//
-//    private void addPipe() {
-//        int space = 150 + rand.nextInt(200);  // To'siq bo'shlig'i
-//        int height = 50 + rand.nextInt(300);  // To'siq balandligi
-//
-//        pipes.add(new Rectangle(WIDTH, 0, PIPE_WIDTH, height)); // Yuqori to'siq
-//        pipes.add(new Rectangle(WIDTH, height + space, PIPE_WIDTH, HEIGHT)); // Pastki to'siq
-//    }
-//
-//    private void resetGame() {
-//        birdY = 300;
-//        birdVelocity = 0;
-//        pipes.clear();
-//        score = 0;
-//        gameOver = false;
-//        gameStarted = false;
-//    }
-//
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("Flappy Bird");
-//        FlappyBird gamePanel = new FlappyBird();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.add(gamePanel);
-//        frame.pack();
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
-//    }
+
+        if (gameStarted) {
+            birdY += birdVelocity;
+            birdVelocity += 1;
+        }
+
+        repaint();
+    }
+
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_SPACE) {
+            if (gameOver) {
+                resetGame();
+            } else {
+                if (!gameStarted) {
+                    gameStarted = true;
+                }
+                birdVelocity = -10;
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    private void addPipe() {
+        int space = 150 + rand.nextInt(200);
+        int height = 50 + rand.nextInt(300);
+
+        pipes.add(new Rectangle(WIDTH, 0, PIPE_WIDTH, height));
+        pipes.add(new Rectangle(WIDTH, height + space, PIPE_WIDTH, HEIGHT));
+    }
+
+    private void resetGame() {
+        birdY = 300;
+        birdVelocity = 0;
+        pipes.clear();
+        score = 0;
+        gameOver = false;
+        gameStarted = false;
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Flappy Bird");
+        FlappyBird gamePanel = new FlappyBird();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(gamePanel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 }
