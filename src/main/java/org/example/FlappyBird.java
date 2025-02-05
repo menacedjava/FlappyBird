@@ -26,20 +26,20 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
     private Timer timer;
     private Random rand;
-//
-//    public FlappyBird() {
-//        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-//        this.setBackground(Color.CYAN);
-//        this.setFocusable(true);
-//        this.addKeyListener(this);
-//
-//        pipes = new ArrayList<>();
-//        rand = new Random();
-//
-//        timer = new Timer(20, this);  // O'yinni har 20 millisekundda yangilash
-//        timer.start();
-//    }
-//
+
+    public FlappyBird() {
+        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        this.setBackground(Color.CYAN);
+        this.setFocusable(true);
+        this.addKeyListener(this);
+
+        pipes = new ArrayList<>();
+        rand = new Random();
+
+        timer = new Timer(20, this);
+        timer.start();
+    }
+
 //    @Override
 //    public void paintComponent(Graphics g) {
 //        super.paintComponent(g);
